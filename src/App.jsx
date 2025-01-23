@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import FoodCard from "./components/FoodCard";
 import { foods } from "./constants/db";
 import { totalPrice } from "./utils";
@@ -32,10 +32,18 @@ function App() {
     setCart(updatedItems);
   };
 
+  const onSendData = useCallback(() => {
+    telegram.sendData(JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    telegram.onEvent("mainButtonClicked", onSendData);
+    return () => telegram.offEvent("mainButtonClicked", onSendData);
+  }, [onSendData]);
+
   const onCheckOut = () => {
     telegram.MainButton.text = "Buyurtma berish";
     telegram.MainButton.show();
-    window.Telegram.WebApp.openLink("https://diyor-dev.uz");
   };
 
   return (

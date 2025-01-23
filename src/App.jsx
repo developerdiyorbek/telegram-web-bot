@@ -35,6 +35,7 @@ function App() {
   const onCheckOut = () => {
     telegram.MainButton.text = "Buyurtma berish";
     telegram.MainButton.show();
+    window.Telegram.WebApp.openLink("https://diyor-dev.uz");
   };
 
   return (

@@ -42,7 +42,7 @@ function App() {
   }, [onSendData]);
 
   const onCheckOut = () => {
-    telegram.MainButton.text = "Buyurtma berish";
+    telegram.MainButton.text = "Buyurtma berishsh";
     telegram.MainButton.show();
   };
 
